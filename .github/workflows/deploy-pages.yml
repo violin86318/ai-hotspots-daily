@@ -37,8 +37,8 @@ jobs:
           # 复制子目录
           cp -r reports/2* pages/ 2>/dev/null || true
 
-          # 创建 index.html（使用最新的报告）
-          LATEST=$(ls -t pages/*.html 2>/dev/null | head -1)
+          # 创建 index.html（使用最新的报告 - 递归查找所有子目录）
+          LATEST=$(find pages -name "*.html" -type f ! -name "index.html" ! -name "reports.html" -exec ls -t {} + 2>/dev/null | head -1)
           if [ -n "$LATEST" ]; then
             cp "$LATEST" pages/index.html
             echo "✅ Set $(basename $LATEST) as index.html"
@@ -106,10 +106,12 @@ jobs:
                   <div class="report-list">
           HTMLEOF
 
-          # 列出所有报告
-          for report in $(ls -t pages/*.html 2>/dev/null | grep -v index.html | grep -v reports.html | head -30); do
+          # 列出所有报告（递归查找并按时间排序）
+          find pages -name "*.html" -type f ! -name "index.html" ! -name "reports.html" -exec ls -t {} + 2>/dev/null | head -30 | while read report; do
+              # 获取相对路径（从 pages/ 开始）
+              rel_path="${report#pages/}"
               filename=$(basename "$report")
-              echo "<div class=\"report-item\"><span>📅 $filename</span><a href=\"$filename\">查看</a></div>" >> pages/reports.html
+              echo "<div class=\"report-item\"><span>📅 $filename</span><a href=\"$rel_path\">查看</a></div>" >> pages/reports.html
           done
 
           cat >> pages/reports.html << 'HTMLEOF'
