@@ -37,8 +37,8 @@ jobs:
           # 复制子目录
           cp -r reports/2* pages/ 2>/dev/null || true
 
-          # 创建 index.html（使用最新的报告 - 递归查找所有子目录）
-          LATEST=$(find pages -name "*.html" -type f ! -name "index.html" ! -name "reports.html" -exec ls -t {} + 2>/dev/null | head -1)
+          # 创建 index.html（使用最新的报告 - 递归查找所有子目录并按修改时间排序）
+          LATEST=$(find pages -name "*.html" -type f ! -name "index.html" ! -name "reports.html" -exec stat -c "%Y %n" {} \; 2>/dev/null | sort -rn | head -1 | cut -d' ' -f2-)
           if [ -n "$LATEST" ]; then
             cp "$LATEST" pages/index.html
             echo "✅ Set $(basename $LATEST) as index.html"
@@ -107,7 +107,8 @@ jobs:
           HTMLEOF
 
           # 列出所有报告（递归查找并按时间排序）
-          find pages -name "*.html" -type f ! -name "index.html" ! -name "reports.html" -exec ls -t {} + 2>/dev/null | head -30 | while read report; do
+          find pages -name "*.html" -type f ! -name "index.html" ! -name "reports.html" -exec stat -c "%Y %n" {} \; 2>/dev/null | sort -rn | head -30 | while read -r line; do
+              report=$(echo "$line" | cut -d' ' -f2-)
               # 获取相对路径（从 pages/ 开始）
               rel_path="${report#pages/}"
               filename=$(basename "$report")
