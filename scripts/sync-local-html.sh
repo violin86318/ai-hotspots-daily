@@ -5,6 +5,7 @@
 # 配置
 SOURCE_DIR="/Users/wanglingwei/Movies/violinvault/SynologyDrive/Clipping/19-ClaudeCode/AI-Hotspots/HTML"
 REPO_DIR="/Users/wanglingwei/Documents/github/ai-hotspots-daily"
+REPORTS_DIR="$REPO_DIR/reports"
 
 # 颜色输出
 RED='\033[0;31m'
@@ -27,8 +28,11 @@ fi
 # 切换到仓库目录
 cd "$REPO_DIR" || exit 1
 
+# 创建 reports 目录
+mkdir -p "$REPORTS_DIR"
+
 echo "📂 源目录: $SOURCE_DIR"
-echo "📂 仓库目录: $REPO_DIR"
+echo "📂 报告目录: $REPORTS_DIR"
 echo ""
 
 # 查找 HTML 文件
@@ -51,8 +55,8 @@ COPIED=0
 while IFS= read -r file; do
     filename=$(basename "$file")
 
-    # 复制到仓库根目录
-    cp "$file" "$REPO_DIR/$filename"
+    # 复制到 reports 目录
+    cp "$file" "$REPORTS_DIR/$filename"
 
     if [ $? -eq 0 ]; then
         echo "   ✅ $filename"
@@ -66,7 +70,7 @@ done <<< "$HTML_FILES"
 if [ -d "$SOURCE_DIR/2026" ]; then
     echo ""
     echo "📂 复制年份文件夹..."
-    cp -r "$SOURCE_DIR/"2* "$REPO_DIR/" 2>/dev/null || true
+    cp -r "$SOURCE_DIR/"2* "$REPORTS_DIR/" 2>/dev/null || true
 fi
 
 echo ""

@@ -30,12 +30,12 @@ jobs:
 
       - name: Prepare pages directory
         run: |
-          # 复制所有 HTML 文件到 pages 目录
+          # 从 reports 目录复制 HTML 文件到 pages 目录
           mkdir -p pages
-          cp *.html pages/ 2>/dev/null || true
+          cp reports/*.html pages/ 2>/dev/null || true
 
           # 复制子目录
-          cp -r 2* pages/ 2>/dev/null || true
+          cp -r reports/2* pages/ 2>/dev/null || true
 
           # 创建 index.html（使用最新的报告）
           LATEST=$(ls -t pages/*.html 2>/dev/null | head -1)
@@ -122,7 +122,7 @@ jobs:
           </html>
           HTMLEOF
 
-          echo "✅ Pages prepared"
+          echo "✅ Pages prepared from reports/ directory"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
