@@ -1,0 +1,71 @@
+# AI 热点收集系统配置 (GitHub Actions 版本)
+
+# 通用设置
+general:
+  timezone: "Asia/Shanghai"
+  language: "zh-CN"
+  lookback_hours: 24
+
+# AI 关键词过滤
+ai_keywords:
+  - "AI"
+  - "GPT"
+  - "Claude"
+  - "LLM"
+  - "Llama"
+  - "ChatGPT"
+  - "machine learning"
+  - "deep learning"
+  - "neural"
+  - "transformer"
+  - "diffusion"
+  - "openai"
+  - "anthropic"
+  - "google ai"
+  - "gemini"
+  - "大模型"
+
+# 数据源配置
+sources:
+  reddit:
+    enabled: true
+    use_rss: true
+    subreddits:
+      - "MachineLearning"
+      - "LocalLLaMA"
+      - "OpenAI"
+      - "StableDiffusion"
+      - "ClaudeAI"
+      - "ArtificialInteligence"
+      - "ChatGPT"
+      - "singularity"
+      - "deeplearning"
+      - "GPT3"
+    min_score: 50
+    sort_by: "hot"
+    ai_keywords_required: true
+
+# AI 分类配置
+categories:
+  - name: "AI 模型发布和更新"
+    icon: "🤖"
+    keywords: ["GPT", "Claude", "Llama", "model", "release", "Gemini", "Bard"]
+
+  - name: "AI 硬件"
+    icon: "💻"
+    keywords: ["GPU", "chip", "hardware", "NVIDIA", "TPU"]
+
+  - name: "AI 公司动态"
+    icon: "🏢"
+    keywords: ["funding", "OpenAI", "Anthropic", "Google"]
+
+  - name: "AI 应用和工具"
+    icon: "🛠️"
+    keywords: ["tool", "app", "Midjourney", "Stable Diffusion"]
+
+# AI 总结配置
+ai_summary:
+  enabled: true
+  model: "gemini-3-flash-preview"
+  max_tokens: 500
+  temperature: 0.7
