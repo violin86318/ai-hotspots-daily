@@ -1,0 +1,134 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Prepare pages directory
+        run: |
+          # 复制所有 HTML 文件到 pages 目录
+          mkdir -p pages
+          cp *.html pages/ 2>/dev/null || true
+
+          # 复制子目录
+          cp -r 2* pages/ 2>/dev/null || true
+
+          # 创建 index.html（使用最新的报告）
+          LATEST=$(ls -t pages/*.html 2>/dev/null | head -1)
+          if [ -n "$LATEST" ]; then
+            cp "$LATEST" pages/index.html
+            echo "✅ Set $(basename $LATEST) as index.html"
+          fi
+
+          # 创建历史报告列表
+          cat > pages/reports.html << 'HTMLEOF'
+          <!DOCTYPE html>
+          <html lang="zh-CN">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>AI 热点日报 - 历史报告</title>
+              <style>
+                  * { margin: 0; padding: 0; box-sizing: border-box; }
+                  body {
+                      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                      color: #333;
+                      line-height: 1.6;
+                      padding: 20px;
+                      min-height: 100vh;
+                  }
+                  .container { max-width: 800px; margin: 0 auto; }
+                  .header {
+                      background: white;
+                      padding: 40px;
+                      border-radius: 16px;
+                      margin-bottom: 24px;
+                      text-align: center;
+                      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+                  }
+                  .header h1 { font-size: 32px; color: #667eea; margin-bottom: 16px; }
+                  .report-list { display: grid; gap: 12px; }
+                  .report-item {
+                      background: white;
+                      padding: 20px;
+                      border-radius: 12px;
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: center;
+                      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                  }
+                  .report-item a {
+                      padding: 8px 16px;
+                      background: #667eea;
+                      color: white;
+                      text-decoration: none;
+                      border-radius: 6px;
+                  }
+                  .footer {
+                      text-align: center;
+                      padding: 40px;
+                      color: white;
+                      opacity: 0.8;
+                  }
+              </style>
+          </head>
+          <body>
+              <div class="container">
+                  <div class="header">
+                      <h1>📚 AI 热点历史报告</h1>
+                      <p>自动同步自本地系统</p>
+                  </div>
+                  <div class="report-list">
+          HTMLEOF
+
+          # 列出所有报告
+          for report in $(ls -t pages/*.html 2>/dev/null | grep -v index.html | grep -v reports.html | head -30); do
+              filename=$(basename "$report")
+              echo "<div class=\"report-item\"><span>📅 $filename</span><a href=\"$filename\">查看</a></div>" >> pages/reports.html
+          done
+
+          cat >> pages/reports.html << 'HTMLEOF'
+                  </div>
+                  <div class="footer">
+                      <p><a href="index.html" style="color:white;">← 返回最新报告</a></p>
+                  </div>
+              </div>
+          </body>
+          </html>
+          HTMLEOF
+
+          echo "✅ Pages prepared"
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: pages
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
