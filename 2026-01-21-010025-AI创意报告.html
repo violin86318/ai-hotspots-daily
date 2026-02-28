@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI热点创意报告 - 2026-01-21</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .report-header {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            margin-bottom: 32px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .report-header h1 {
+            font-size: 32px;
+            color: #667eea;
+            margin-bottom: 16px;
+        }
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            color: #666;
+            font-size: 14px;
+        }
+        h2 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding-left: 16px;
+            border-left: 4px solid white;
+        }
+        .hotspot-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .hotspot-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .hotspot-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        .hotspot-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+        .rank {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .hotspot-title { font-weight: 600; font-size: 15px; flex: 1; line-height: 1.4; }
+        .hotspot-score { font-size: 13px; color: #764ba2; font-weight: 600; }
+        .hotspot-category {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            color: #666;
+            margin-top: 8px;
+        }
+        .statistics {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 32px;
+            border-radius: 16px;
+            margin-bottom: 32px;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+        .stat-value { font-size: 36px; font-weight: 700; display: block; margin-bottom: 8px; }
+        .stat-label { font-size: 13px; opacity: 0.95; }
+        .idea-card {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 16px;
+            border-left: 5px solid #E0E0E0;
+        }
+        .idea-card.excellent { border-left-color: #FFD700; }
+        .idea-card.good { border-left-color: #06A77D; }
+        .idea-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px; }
+        .idea-name { font-size: 18px; font-weight: 600; color: #333; flex: 1; }
+        .idea-score {
+            font-size: 24px;
+            font-weight: 700;
+            color: #667eea;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        .badge.excellent { background: #FFD700; color: #333; }
+        .badge.good { background: #06A77D; color: white; }
+        .idea-body p { margin-bottom: 12px; line-height: 1.6; color: #555; }
+        .idea-features {
+            background: #f8f9fa;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        .idea-features strong { color: #667eea; }
+        .idea-features li { margin-bottom: 6px; color: #555; }
+        .idea-users {
+            background: #e8f4f8;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #06A77D;
+            font-weight: 500;
+        }
+        .footer { text-align: center; padding: 32px; color: rgba(255,255,255,0.8); font-size: 14px; }
+        .footer a { color: white; text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="report-header">
+            <h1>🤖 AI热点创意分析报告</h1>
+            <div class="meta-info">
+                <span>📅 生成日期：2026-01-21</span>
+                <span>🔥 热点总数：10</span>
+                <span>💡 创意总数：21</span>
+            </div>
+        </header>
+
+        <div class="statistics">
+            <h2>📊 创意统计</h2>
+            <div class="stat-grid">
+                <div class="stat-item">
+                    <span class="stat-value">231</span>
+                    <span class="stat-label">热点总数</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">3</span>
+                    <span class="stat-label">优秀创意 (≥80分)</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">10</span>
+                    <span class="stat-label">良好创意 (70-79分)</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">70</span>
+                    <span class="stat-label">平均评分</span>
+                </div>
+            </div>
+        </div>
+
+        <h2>🏆 TOP 10 热点概览</h2>
+        <div class="hotspot-list">
+
+            <div class="hotspot-card">
+                <div class="hotspot-header">
+                    <div class="rank">1</div>
+                    <div class="hotspot-title">
+                        <a href="https://www.reddit.com/r/OpenAI/comments/1qh0hyh/jailbreaking_via_poetry_new_study_shows_ai_safety/" target="_blank" style="color: inherit; text-decoration: none;">Jailbreaking via Poetry: New study shows AI safety filters can be bypassed in 62...</a>
+                    </div>
+                </div>
+                <div class="hotspot-score">⭐ 95分</div>
+                <div class="hotspot-category">AI 公司动态</div>
+                <div style="margin-top: 12px;">
+                    <a href="https://www.reddit.com/r/OpenAI/comments/1qh0hyh/jailbreaking_via_poetry_new_study_shows_ai_safety/" target="_blank" style="font-size: 12px; color: #667eea; text-decoration: none;">🔗 查看原文 →</a>
+                </div>
+            </div>
+
+            <div class="hotspot-card">
+                <div class="hotspot-header">
+                    <div class="rank">2</div>
+                    <div class="hotspot-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1qhitrj/glm_47_flash_official_support_merged_in_llamacpp/" target="_blank" style="color: inherit; text-decoration: none;">GLM 4.7 Flash official support merged in llama.cpp</a>
+                    </div>
+                </div>
+                <div class="hotspot-score">⭐ 90分</div>
+                <div class="hotspot-category">GLM-4.7 Flash</div>
+                <div style="margin-top: 12px;">
+                    <a href="https://www.reddit.com/r/LocalLLaMA/comments/1qhitrj/glm_47_flash_official_support_merged_in_llamacpp/" target="_blank" style="font-size: 12px; color: #667eea; text-decoration: none;">🔗 查看原文 →</a>
+                </div>
+            </div>
+
+            <div class="hotspot-card">
+                <div class="hotspot-header">
+                    <div class="rank">3</div>
+                    <div class="hotspot-title">
+                        <a href="https://www.reddit.com/r/StableDiffusion/comments/1qhg6nw/kohyasssdscripts_v0100_released/" target="_blank" style="color: inherit; text-decoration: none;">kohya-ss/sd-scripts v0.10.0 released</a>
+                    </div>
+                </div>
+                <div class="hotspot-score">⭐ 90分</div>
+                <div class="hotspot-category">Stable Diffusion</div>
+                <div style="margin-top: 12px;">
+                    <a href="https://www.reddit.com/r/StableDiffusion/comments/1qhg6nw/kohyasssdscripts_v0100_released/" target="_blank" style="font-size: 12px; color: #667eea; text-decoration: none;">🔗 查看原文 →</a>
+                </div>
+            </div>
+
+            <div class="hotspot-card">
+                <div class="hotspot-header">
+                    <div class="rank">4</div>
+                    <div class="hotspot-title">
+                        <a href="https://www.reddit.com/r/ArtificialInteligence/comments/1qh49mp/developer_releases_tool_that_disables_ai_ads_and/" target="_blank" style="color: inherit; text-decoration: none;">Developer releases tool that disables AI, ads, and other junk in Chrome, Edge, a...</a>
+                    </div>
+                </div>
+                <div class="hotspot-score">⭐ 90分</div>
+                <div class="hotspot-category">浏览器工具</div>
+                <div style="margin-top: 12px;">
+                    <a href="https://www.reddit.com/r/ArtificialInteligence/comments/1qh49mp/developer_releases_tool_that_disables_ai_ads_and/" target="_blank" style="font-size: 12px; color: #667eea; text-decoration: none;">🔗 查看原文 →</a>
+                </div>
+            </div>
+
+            <div class="hotspot-card">
+                <div class="hotspot-header">
+                    <div class="rank">5</div>
+                    <div class="hotspot-title">
+                        <a href="https://www.reddit.com/r/artificial/comments/1qguqc9/oneminute_daily_ai_news_1182026/" target="_blank" style="color: inherit; text-decoration: none;">One-Minute Daily AI News 1/18/2026</a>
+                    </div>
+                </div>
+                <div class="hotspot-score">⭐ 90分</div>
+                <div class="hotspot-category">AI 新闻</div>
+                <div style="margin-top: 12px;">
+                    <a href="https://www.reddit.com/r/artificial/comments/1qguqc9/oneminute_daily_ai_news_1182026/" target="_blank" style="font-size: 12px; color: #667eea; text-decoration: none;">🔗 查看原文 →</a>
+                </div>
+            </div>
+
+            <div class="hotspot-card">
+                <div class="hotspot-header">
+                    <div class="rank">6</div>
+                    <div class="hotspot-title">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/comments/1qh0yq8/i_made_a_topk_implementation_thats_up_to_20x/" target="_blank" style="color: inherit; text-decoration: none;">I made a Top-K implementation that's up to 20x faster than PyTorch CPU (open sou...</a>
+                    </div>
+                </div>
+                <div class="hotspot-score">⭐ 88分</div>
+                <div class="hotspot-category">Top-K 算法</div>
+                <div style="margin-top: 12px;">
+                    <a href="https://www.reddit.com/r/LocalLLaMA/comments/1qh0yq8/i_made_a_topk_implementation_thats_up_to_20x/" target="_blank" style="font-size: 12px; color: #667eea; text-decoration: none;">🔗 查看原文 →</a>
+                </div>
+            </div>
+
+            <div class="hotspot-card">
+                <div class="hotspot-header">
+                    <div class="rank">7</div>
+                    <div class="hotspot-title">
+                        <a href="https://www.reddit.com/r/learnmachinelearning/comments/1qhnngo/how_to_use_a_i_for_business_begginer_friendly/" target="_blank" style="color: inherit; text-decoration: none;">How to Use A I for Business - Begginer Friendly Course</a>
+                    </div>
+                </div>
+                <div class="hotspot-score">⭐ 88分</div>
+                <div class="hotspot-category">AI 课程</div>
+                <div style="margin-top: 12px;">
+                    <a href="https://www.reddit.com/r/learnmachinelearning/comments/1qhnngo/how_to_use_a_i_for_business_begginer_friendly/" target="_blank" style="font-size: 12px; color: #667eea; text-decoration: none;">🔗 查看原文 →</a>
+                </div>
+            </div>
+
+            <div class="hotspot-card">
+                <div class="hotspot-header">
+                    <div class="rank">8</div>
+                    <div class="hotspot-title">
+                        <a href="https://www.reddit.com/r/MLQuestions/comments/1qh5zx9/looking_to_learn_how_to_optimize_ml_models/" target="_blank" style="color: inherit; text-decoration: none;">Looking to learn how to optimize ML models (inference and training)</a>
+                    </div>
+                </div>
+                <div class="hotspot-score">⭐ 88分</div>
+                <div class="hotspot-category">推理优化</div>
+                <div style="margin-top: 12px;">
+                    <a href="https://www.reddit.com/r/MLQuestions/comments/1qh5zx9/looking_to_learn_how_to_optimize_ml_models/" target="_blank" style="font-size: 12px; color: #667eea; text-decoration: none;">🔗 查看原文 →</a>
+                </div>
+            </div>
+
+            <div class="hotspot-card">
+                <div class="hotspot-header">
+                    <div class="rank">9</div>
+                    <div class="hotspot-title">
+                        <a href="https://www.reddit.com/r/deeplearning/comments/1qh442b/visionbased_safety_system_for_overhead_crane_how/" target="_blank" style="color: inherit; text-decoration: none;">Vision-Based Safety System for Overhead Crane – How to Handle Moving, Partially ...</a>
+                    </div>
+                </div>
+                <div class="hotspot-score">⭐ 88分</div>
+                <div class="hotspot-category">AI 课程</div>
+                <div style="margin-top: 12px;">
+                    <a href="https://www.reddit.com/r/deeplearning/comments/1qh442b/visionbased_safety_system_for_overhead_crane_how/" target="_blank" style="font-size: 12px; color: #667eea; text-decoration: none;">🔗 查看原文 →</a>
+                </div>
+            </div>
+
+            <div class="hotspot-card">
+                <div class="hotspot-header">
+                    <div class="rank">10</div>
+                    <div class="hotspot-title">
+                        <a href="https://www.reddit.com/r/computervision/comments/1qh41yi/visionbased_safety_system_for_overhead_crane_how/" target="_blank" style="color: inherit; text-decoration: none;">Vision-Based Safety System for Overhead Crane – How to Handle Moving, Partially ...</a>
+                    </div>
+                </div>
+                <div class="hotspot-score">⭐ 88分</div>
+                <div class="hotspot-category">AI 课程</div>
+                <div style="margin-top: 12px;">
+                    <a href="https://www.reddit.com/r/computervision/comments/1qh41yi/visionbased_safety_system_for_overhead_crane_how/" target="_blank" style="font-size: 12px; color: #667eea; text-decoration: none;">🔗 查看原文 →</a>
+                </div>
+            </div>
+
+        </div>
+
+        <h2>💡 产品创意详解</h2>
+
+        <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <h3 style="color: #667eea; margin-bottom: 16px; font-size: 20px;">#1 Jailbreaking via Poetry: New study shows AI safety filters c...</h3>
+            <div style="color: #666; font-size: 14px; margin-bottom: 20px;">📂 🏢 AI 公司动态 | ⭐ 95分</div>
+
+            <div class="idea-card good">
+                <div class="idea-header">
+                    <div class="idea-name">
+                        "Jailbreaking via" 专题信息聚合平台
+                        <span class="badge good">良好</span>
+                    </div>
+                    <div class="idea-score">70分</div>
+                </div>
+                <div class="idea-body">
+                    <p><strong>💡 产品描述：</strong>围绕 Jailbreaking via Poetry: New study shows AI safety filters can be bypassed in 62% of cases when harmful requests are hidden in rhymes. 聚合相关资讯和工具。</p>
+                    <div class="idea-features">
+                        <strong>✨ 核心特性：</strong>
+                        <ul>
+                            <li>多源聚合</li><li>智能分类</li><li>个性化推荐</li><li>实时更新</li>
+                        </ul>
+                    </div>
+                    <div class="idea-users">👥 目标用户：研究人员、爱好者</div>
+                    <div style="margin-top: 12px; font-size: 13px; color: #999;">
+                        趣味性：72分 | 实用性：68分
+                    </div>
+                </div>
+            </div>
+
+            <div class="idea-card ">
+                <div class="idea-header">
+                    <div class="idea-name">
+                        Jailbreaking via 知识卡片生成器
+                        
+                    </div>
+                    <div class="idea-score">65分</div>
+                </div>
+                <div class="idea-body">
+                    <p><strong>💡 产品描述：</strong>将 Jailbreaking via Poetry: New study shows AI safety filters can be bypassed in 62% of cases when harmful requests are hidden in rhymes. 相关知识提炼成卡片。</p>
+                    <div class="idea-features">
+                        <strong>✨ 核心特性：</strong>
+                        <ul>
+                            <li>信息提炼</li><li>视觉化</li><li>知识关联</li><li>社交分享</li>
+                        </ul>
+                    </div>
+                    <div class="idea-users">👥 目标用户：学习者、教育者</div>
+                    <div style="margin-top: 12px; font-size: 13px; color: #999;">
+                        趣味性：68分 | 实用性：62分
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <h3 style="color: #667eea; margin-bottom: 16px; font-size: 20px;">#2 GLM 4.7 Flash official support merged in llama.cpp</h3>
+            <div style="color: #666; font-size: 14px; margin-bottom: 20px;">📂 🤖 AI 模型发布和更新 | ⭐ 90分</div>
+
+            <div class="idea-card excellent">
+                <div class="idea-header">
+                    <div class="idea-name">
+                        GLM 本地部署工具包
+                        <span class="badge excellent">优秀</span>
+                    </div>
+                    <div class="idea-score">86分</div>
+                </div>
+                <div class="idea-body">
+                    <p><strong>💡 产品描述：</strong>针对 GLM 4.7 Flash official support merged in llama.cpp 的本地部署需求，提供开箱即用的部署工具。</p>
+                    <div class="idea-features">
+                        <strong>✨ 核心特性：</strong>
+                        <ul>
+                            <li>一键安装脚本</li><li>模型量化优化</li><li>API服务封装</li><li>监控面板</li>
+                        </ul>
+                    </div>
+                    <div class="idea-users">👥 目标用户：个人开发者、中小企业</div>
+                    <div style="margin-top: 12px; font-size: 13px; color: #999;">
+                        趣味性：70分 | 实用性：92分
+                    </div>
+                </div>
+            </div>
+
+            <div class="idea-card excellent">
+                <div class="idea-header">
+                    <div class="idea-name">
+                        低配显卡加速套件
+                        <span class="badge excellent">优秀</span>
+                    </div>
+                    <div class="idea-score">83分</div>
+                </div>
+                <div class="idea-body">
+                    <p><strong>💡 产品描述：</strong>让 GLM 4.7 Flash official support merged in llama.cpp 能在消费级显卡上高效运行，降低本地使用门槛。</p>
+                    <div class="idea-features">
+                        <strong>✨ 核心特性：</strong>
+                        <ul>
+                            <li>模型量化压缩</li><li>显存优化</li><li>推理加速</li><li>多模型并行</li>
+                        </ul>
+                    </div>
+                    <div class="idea-users">👥 目标用户：显卡配置较低的用户</div>
+                    <div style="margin-top: 12px; font-size: 13px; color: #999;">
+                        趣味性：75分 | 实用性：88分
+                    </div>
+                </div>
+            </div>
+
+            <div class="idea-card excellent">
+                <div class="idea-header">
+                    <div class="idea-name">
+                        GLM 微调训练平台
+                        <span class="badge excellent">优秀</span>
+                    </div>
+                    <div class="idea-score">80分</div>
+                </div>
+                <div class="idea-body">
+                    <p><strong>💡 产品描述：</strong>基于 GLM 4.7 Flash official support merged in llama.cpp 提供端到端的微调训练平台。</p>
+                    <div class="idea-features">
+                        <strong>✨ 核心特性：</strong>
+                        <ul>
+                            <li>数据准备</li><li>训练脚本</li><li>评估工具</li><li>模型导出</li>
+                        </ul>
+                    </div>
+                    <div class="idea-users">👥 目标用户：AI研究人员、企业</div>
+                    <div style="margin-top: 12px; font-size: 13px; color: #999;">
+                        趣味性：72分 | 实用性：85分
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <h3 style="color: #667eea; margin-bottom: 16px; font-size: 20px;">#3 kohya-ss/sd-scripts v0.10.0 released</h3>
+            <div style="color: #666; font-size: 14px; margin-bottom: 20px;">📂 🤖 AI 模型发布和更新 | ⭐ 90分</div>
+
+            <div class="idea-card good">
+                <div class="idea-header">
+                    <div class="idea-name">
+                        "kohya-ss/sd-scripts v0.10.0" 专题信息聚合平台
+                        <span class="badge good">良好</span>
+                    </div>
+                    <div class="idea-score">70分</div>
+                </div>
+                <div class="idea-body">
+                    <p><strong>💡 产品描述：</strong>围绕 kohya-ss/sd-scripts v0.10.0 released 聚合相关资讯和工具。</p>
+                    <div class="idea-features">
+                        <strong>✨ 核心特性：</strong>
+                        <ul>
+                            <li>多源聚合</li><li>智能分类</li><li>个性化推荐</li><li>实时更新</li>
+                        </ul>
+                    </div>
+                    <div class="idea-users">👥 目标用户：研究人员、爱好者</div>
+                    <div style="margin-top: 12px; font-size: 13px; color: #999;">
+                        趣味性：72分 | 实用性：68分
+                    </div>
+                </div>
+            </div>
+
+            <div class="idea-card ">
+                <div class="idea-header">
+                    <div class="idea-name">
+                        kohya-ss/sd-scripts v0.10.0 知识卡片生成器
+                        
+                    </div>
+                    <div class="idea-score">65分</div>
+                </div>
+                <div class="idea-body">
+                    <p><strong>💡 产品描述：</strong>将 kohya-ss/sd-scripts v0.10.0 released 相关知识提炼成卡片。</p>
+                    <div class="idea-features">
+                        <strong>✨ 核心特性：</strong>
+                        <ul>
+                            <li>信息提炼</li><li>视觉化</li><li>知识关联</li><li>社交分享</li>
+                        </ul>
+                    </div>
+                    <div class="idea-users">👥 目标用户：学习者、教育者</div>
+                    <div style="margin-top: 12px; font-size: 13px; color: #999;">
+                        趣味性：68分 | 实用性：62分
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <h3 style="color: #667eea; margin-bottom: 16px; font-size: 20px;">#4 Developer releases tool that disables AI, ads, and other jun...</h3>
+            <div style="color: #666; font-size: 14px; margin-bottom: 20px;">📂 🤖 AI 模型发布和更新 | ⭐ 90分</div>
+
+            <div class="idea-card good">
+                <div class="idea-header">
+                    <div class="idea-name">
+                        "Developer releases" 专题信息聚合平台
+                        <span class="badge good">良好</span>
+                    </div>
+                    <div class="idea-score">70分</div>
+                </div>
+                <div class="idea-body">
+                    <p><strong>💡 产品描述：</strong>围绕 Developer releases tool that disables AI, ads, and other junk in Chrome, Edge, and Firefox 聚合相关资讯和工具。</p>
+                    <div class="idea-features">
+                        <strong>✨ 核心特性：</strong>
+                        <ul>
+                            <li>多源聚合</li><li>智能分类</li><li>个性化推荐</li><li>实时更新</li>
+                        </ul>
+                    </div>
+                    <div class="idea-users">👥 目标用户：研究人员、爱好者</div>
+                    <div style="margin-top: 12px; font-size: 13px; color: #999;">
+                        趣味性：72分 | 实用性：68分
+                    </div>
+                </div>
+            </div>
+
+            <div class="idea-card ">
+                <div class="idea-header">
+                    <div class="idea-name">
+                        Developer releases 知识卡片生成器
+                        
+                    </div>
+                    <div class="idea-score">65分</div>
+                </div>
+                <div class="idea-body">
+                    <p><strong>💡 产品描述：</strong>将 Developer releases tool that disables AI, ads, and other junk in Chrome, Edge, and Firefox 相关知识提炼成卡片。</p>
+                    <div class="idea-features">
+                        <strong>✨ 核心特性：</strong>
+                        <ul>
+                            <li>信息提炼</li><li>视觉化</li><li>知识关联</li><li>社交分享</li>
+                        </ul>
+                    </div>
+                    <div class="idea-users">👥 目标用户：学习者、教育者</div>
+                    <div style="margin-top: 12px; font-size: 13px; color: #999;">
+                        趣味性：68分 | 实用性：62分
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <h3 style="color: #667eea; margin-bottom: 16px; font-size: 20px;">#5 One-Minute Daily AI News 1/18/2026</h3>
+            <div style="color: #666; font-size: 14px; margin-bottom: 20px;">📂 💻 AI 硬件（芯片、设备） | ⭐ 90分</div>
+
+            <div class="idea-card good">
+                <div class="idea-header">
+                    <div class="idea-name">
+                        "One-Minute Daily" 专题信息聚合平台
+                        <span class="badge good">良好</span>
+                    </div>
+                    <div class="idea-score">70分</div>
+                </div>
+                <div class="idea-body">
+                    <p><strong>💡 产品描述：</strong>围绕 One-Minute Daily AI News 1/18/2026 聚合相关资讯和工具。</p>
+                    <div class="idea-features">
+                        <strong>✨ 核心特性：</strong>
+                        <ul>
+                            <li>多源聚合</li><li>智能分类</li><li>个性化推荐</li><li>实时更新</li>
+                        </ul>
+                    </div>
+                    <div class="idea-users">👥 目标用户：研究人员、爱好者</div>
+                    <div style="margin-top: 12px; font-size: 13px; color: #999;">
+                        趣味性：72分 | 实用性：68分
+                    </div>
+                </div>
+            </div>
+
+            <div class="idea-card ">
+                <div class="idea-header">
+                    <div class="idea-name">
+                        One-Minute Daily 知识卡片生成器
+                        
+                    </div>
+                    <div class="idea-score">65分</div>
+                </div>
+                <div class="idea-body">
+                    <p><strong>💡 产品描述：</strong>将 One-Minute Daily AI News 1/18/2026 相关知识提炼成卡片。</p>
+                    <div class="idea-features">
+                        <strong>✨ 核心特性：</strong>
+                        <ul>
+                            <li>信息提炼</li><li>视觉化</li><li>知识关联</li><li>社交分享</li>
+                        </ul>
+                    </div>
+                    <div class="idea-users">👥 目标用户：学习者、教育者</div>
+                    <div style="margin-top: 12px; font-size: 13px; color: #999;">
+                        趣味性：68分 | 实用性：62分
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <h3 style="color: #667eea; margin-bottom: 16px; font-size: 20px;">#6 I made a Top-K implementation that's up to 20x faster than P...</h3>
+            <div style="color: #666; font-size: 14px; margin-bottom: 20px;">📂 🤖 AI 模型发布和更新 | ⭐ 88分</div>
+
+            <div class="idea-card good">
+                <div class="idea-header">
+                    <div class="idea-name">
+                        "I made" 专题信息聚合平台
+                        <span class="badge good">良好</span>
+                    </div>
+                    <div class="idea-score">70分</div>
+                </div>
+                <div class="idea-body">
+                    <p><strong>💡 产品描述：</strong>围绕 I made a Top-K implementation that's up to 20x faster than PyTorch CPU (open source) 聚合相关资讯和工具。</p>
+                    <div class="idea-features">
+                        <strong>✨ 核心特性：</strong>
+                        <ul>
+                            <li>多源聚合</li><li>智能分类</li><li>个性化推荐</li><li>实时更新</li>
+                        </ul>
+                    </div>
+                    <div class="idea-users">👥 目标用户：研究人员、爱好者</div>
+                    <div style="margin-top: 12px; font-size: 13px; color: #999;">
+                        趣味性：72分 | 实用性：68分
+                    </div>
+                </div>
+            </div>
+
+            <div class="idea-card ">
+                <div class="idea-header">
+                    <div class="idea-name">
+                        I made 知识卡片生成器
+                        
+                    </div>
+                    <div class="idea-score">65分</div>
+                </div>
+                <div class="idea-body">
+                    <p><strong>💡 产品描述：</strong>将 I made a Top-K implementation that's up to 20x faster than PyTorch CPU (open source) 相关知识提炼成卡片。</p>
+                    <div class="idea-features">
+                        <strong>✨ 核心特性：</strong>
+                        <ul>
+                            <li>信息提炼</li><li>视觉化</li><li>知识关联</li><li>社交分享</li>
+                        </ul>
+                    </div>
+                    <div class="idea-users">👥 目标用户：学习者、教育者</div>
+                    <div style="margin-top: 12px; font-size: 13px; color: #999;">
+                        趣味性：68分 | 实用性：62分
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <h3 style="color: #667eea; margin-bottom: 16px; font-size: 20px;">#7 How to Use A I for Business - Begginer Friendly Course</h3>
+            <div style="color: #666; font-size: 14px; margin-bottom: 20px;">📂 🤖 AI 模型发布和更新 | ⭐ 88分</div>
+
+            <div class="idea-card good">
+                <div class="idea-header">
+                    <div class="idea-name">
+                        "How to" 专题信息聚合平台
+                        <span class="badge good">良好</span>
+                    </div>
+                    <div class="idea-score">70分</div>
+                </div>
+                <div class="idea-body">
+                    <p><strong>💡 产品描述：</strong>围绕 How to Use A I for Business - Begginer Friendly Course 聚合相关资讯和工具。</p>
+                    <div class="idea-features">
+                        <strong>✨ 核心特性：</strong>
+                        <ul>
+                            <li>多源聚合</li><li>智能分类</li><li>个性化推荐</li><li>实时更新</li>
+                        </ul>
+                    </div>
+                    <div class="idea-users">👥 目标用户：研究人员、爱好者</div>
+                    <div style="margin-top: 12px; font-size: 13px; color: #999;">
+                        趣味性：72分 | 实用性：68分
+                    </div>
+                </div>
+            </div>
+
+            <div class="idea-card ">
+                <div class="idea-header">
+                    <div class="idea-name">
+                        How to 知识卡片生成器
+                        
+                    </div>
+                    <div class="idea-score">65分</div>
+                </div>
+                <div class="idea-body">
+                    <p><strong>💡 产品描述：</strong>将 How to Use A I for Business - Begginer Friendly Course 相关知识提炼成卡片。</p>
+                    <div class="idea-features">
+                        <strong>✨ 核心特性：</strong>
+                        <ul>
+                            <li>信息提炼</li><li>视觉化</li><li>知识关联</li><li>社交分享</li>
+                        </ul>
+                    </div>
+                    <div class="idea-users">👥 目标用户：学习者、教育者</div>
+                    <div style="margin-top: 12px; font-size: 13px; color: #999;">
+                        趣味性：68分 | 实用性：62分
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <h3 style="color: #667eea; margin-bottom: 16px; font-size: 20px;">#8 Looking to learn how to optimize ML models (inference and tr...</h3>
+            <div style="color: #666; font-size: 14px; margin-bottom: 20px;">📂 🤖 AI 模型发布和更新 | ⭐ 88分</div>
+
+            <div class="idea-card good">
+                <div class="idea-header">
+                    <div class="idea-name">
+                        LLM 应用快速开发框架
+                        <span class="badge good">良好</span>
+                    </div>
+                    <div class="idea-score">75分</div>
+                </div>
+                <div class="idea-body">
+                    <p><strong>💡 产品描述：</strong>围绕 Looking to learn how to optimize ML models (inference and training) 提供开箱即用的 LLM 应用开发框架。</p>
+                    <div class="idea-features">
+                        <strong>✨ 核心特性：</strong>
+                        <ul>
+                            <li>模型接口封装</li><li>常用工具集成</li><li>部署方案</li><li>监控告警</li>
+                        </ul>
+                    </div>
+                    <div class="idea-users">👥 目标用户：开发者、企业</div>
+                    <div style="margin-top: 12px; font-size: 13px; color: #999;">
+                        趣味性：70分 | 实用性：80分
+                    </div>
+                </div>
+            </div>
+
+            <div class="idea-card good">
+                <div class="idea-header">
+                    <div class="idea-name">
+                        Looking 社区讨论平台
+                        <span class="badge good">良好</span>
+                    </div>
+                    <div class="idea-score">70分</div>
+                </div>
+                <div class="idea-body">
+                    <p><strong>💡 产品描述：</strong>为 Looking to learn how to optimize ML models (inference and training) 建立专注的讨论和分享社区。</p>
+                    <div class="idea-features">
+                        <strong>✨ 核心特性：</strong>
+                        <ul>
+                            <li>话题聚合</li><li>技术交流</li><li>资源分享</li><li>问答社区</li>
+                        </ul>
+                    </div>
+                    <div class="idea-users">👥 目标用户：开发者、爱好者</div>
+                    <div style="margin-top: 12px; font-size: 13px; color: #999;">
+                        趣味性：75分 | 实用性：68分
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <h3 style="color: #667eea; margin-bottom: 16px; font-size: 20px;">#9 Vision-Based Safety System for Overhead Crane – How to Handl...</h3>
+            <div style="color: #666; font-size: 14px; margin-bottom: 20px;">📂 🤖 AI 模型发布和更新 | ⭐ 88分</div>
+
+            <div class="idea-card good">
+                <div class="idea-header">
+                    <div class="idea-name">
+                        "Vision-Based Safety" 专题信息聚合平台
+                        <span class="badge good">良好</span>
+                    </div>
+                    <div class="idea-score">70分</div>
+                </div>
+                <div class="idea-body">
+                    <p><strong>💡 产品描述：</strong>围绕 Vision-Based Safety System for Overhead Crane – How to Handle Moving, Partially Visible Danger Zones? 聚合相关资讯和工具。</p>
+                    <div class="idea-features">
+                        <strong>✨ 核心特性：</strong>
+                        <ul>
+                            <li>多源聚合</li><li>智能分类</li><li>个性化推荐</li><li>实时更新</li>
+                        </ul>
+                    </div>
+                    <div class="idea-users">👥 目标用户：研究人员、爱好者</div>
+                    <div style="margin-top: 12px; font-size: 13px; color: #999;">
+                        趣味性：72分 | 实用性：68分
+                    </div>
+                </div>
+            </div>
+
+            <div class="idea-card ">
+                <div class="idea-header">
+                    <div class="idea-name">
+                        Vision-Based Safety 知识卡片生成器
+                        
+                    </div>
+                    <div class="idea-score">65分</div>
+                </div>
+                <div class="idea-body">
+                    <p><strong>💡 产品描述：</strong>将 Vision-Based Safety System for Overhead Crane – How to Handle Moving, Partially Visible Danger Zones? 相关知识提炼成卡片。</p>
+                    <div class="idea-features">
+                        <strong>✨ 核心特性：</strong>
+                        <ul>
+                            <li>信息提炼</li><li>视觉化</li><li>知识关联</li><li>社交分享</li>
+                        </ul>
+                    </div>
+                    <div class="idea-users">👥 目标用户：学习者、教育者</div>
+                    <div style="margin-top: 12px; font-size: 13px; color: #999;">
+                        趣味性：68分 | 实用性：62分
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <h3 style="color: #667eea; margin-bottom: 16px; font-size: 20px;">#10 Vision-Based Safety System for Overhead Crane – How to Handl...</h3>
+            <div style="color: #666; font-size: 14px; margin-bottom: 20px;">📂 🛠️ AI 应用和工具 | ⭐ 88分</div>
+
+            <div class="idea-card good">
+                <div class="idea-header">
+                    <div class="idea-name">
+                        "Vision-Based Safety" 专题信息聚合平台
+                        <span class="badge good">良好</span>
+                    </div>
+                    <div class="idea-score">70分</div>
+                </div>
+                <div class="idea-body">
+                    <p><strong>💡 产品描述：</strong>围绕 Vision-Based Safety System for Overhead Crane – How to Handle Moving, Partially Visible Danger Zones? 聚合相关资讯和工具。</p>
+                    <div class="idea-features">
+                        <strong>✨ 核心特性：</strong>
+                        <ul>
+                            <li>多源聚合</li><li>智能分类</li><li>个性化推荐</li><li>实时更新</li>
+                        </ul>
+                    </div>
+                    <div class="idea-users">👥 目标用户：研究人员、爱好者</div>
+                    <div style="margin-top: 12px; font-size: 13px; color: #999;">
+                        趣味性：72分 | 实用性：68分
+                    </div>
+                </div>
+            </div>
+
+            <div class="idea-card ">
+                <div class="idea-header">
+                    <div class="idea-name">
+                        Vision-Based Safety 知识卡片生成器
+                        
+                    </div>
+                    <div class="idea-score">65分</div>
+                </div>
+                <div class="idea-body">
+                    <p><strong>💡 产品描述：</strong>将 Vision-Based Safety System for Overhead Crane – How to Handle Moving, Partially Visible Danger Zones? 相关知识提炼成卡片。</p>
+                    <div class="idea-features">
+                        <strong>✨ 核心特性：</strong>
+                        <ul>
+                            <li>信息提炼</li><li>视觉化</li><li>知识关联</li><li>社交分享</li>
+                        </ul>
+                    </div>
+                    <div class="idea-users">👥 目标用户：学习者、教育者</div>
+                    <div style="margin-top: 12px; font-size: 13px; color: #999;">
+                        趣味性：68分 | 实用性：62分
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <footer class="footer">
+            <p>🤖 Generated by AI-Hotspots Collector v2.0</p>
+            <p style="margin-top: 8px;">生成时间：2026-01-21 01:00:25</p>
+            <p style="margin-top: 12px; font-size: 12px; opacity: 0.7;">
+                • 创意生成: 智能模板匹配<br>
+                • 内容去重: 智能索引系统<br>
+                • YouTube: 修正频道ID，优化回溯时间
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
