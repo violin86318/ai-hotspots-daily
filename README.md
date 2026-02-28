@@ -55,7 +55,9 @@ ai-hotspots-daily/
 │   └── deploy-pages.yml      # Pages 自动部署
 ├── scripts/
 │   └── sync-local-html.sh    # 本地同步脚本
-├── *.html                     # 同步的 HTML 报告
+├── reports/                   # HTML 报告目录
+│   ├── *.html                # 同步的 HTML 报告
+│   └── 2026/                 # 年份子目录
 └── README.md
 ```
 
