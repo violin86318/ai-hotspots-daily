@@ -71,10 +71,11 @@ def main():
     top10 = get_top10(analyzed_items)
     logger.info(f"✅ Top 10 精选完成")
 
-    # 生成创意
+    # 生成创意（只对 Top 5 生成，减少 API 调用）
     idea_generator = AIIdeaGenerator(config)
-    ideas = idea_generator.generate_for_top10(top10)
-    logger.info(f"✅ 创意生成完成: {sum(len(v) for v in ideas.values())} 个创意")
+    top5_for_ideas = top10[:5]  # 只对前 5 个生成创意
+    ideas = idea_generator.generate_for_top10(top5_for_ideas)
+    logger.info(f"✅ 创意生成完成: {sum(len(v) for v in ideas.values())} 个创意 (Top 5)")
 
     # ========== 4. 生成 HTML 报告 ==========
     logger.info("\n[4/4] 生成 HTML 报告...")
@@ -92,7 +93,7 @@ def main():
     logger.info("✅ Phase 2 任务完成!")
     logger.info(f"📊 数据: {len(analyzed_items)} 条")
     logger.info(f"🏆 Top 10: 精选完成")
-    logger.info(f"🎨 创意: {sum(len(v) for v in ideas.values())} 个")
+    logger.info(f"🎨 创意: {sum(len(v) for v in ideas.values())} 个 (Top 5)")
     logger.info("=" * 60)
 
 

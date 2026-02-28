@@ -15,7 +15,7 @@ class AIIdeaGenerator:
     def __init__(self, config: dict = None):
         self.config = config or {}
         self.model = os.getenv("OPENAI_PROXY_MODEL", "gemini-3-flash-preview")
-        self.max_ideas = 2  # 每个热点生成 2 个创意
+        self.max_ideas = 1  # 每个热点生成 1 个高质量创意
         self.client = None
         self.provider = None
         self._init_client()

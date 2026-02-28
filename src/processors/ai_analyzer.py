@@ -58,23 +58,38 @@ class AIAnalyzer:
         self.client = None
 
     def analyze_batch(self, items: List[Dict]) -> List[Dict]:
-        """批量分析内容"""
+        """批量分析内容 - 优化版：只对 Top 50 进行 AI 分析"""
         if not self.client:
             logger.info("AI 分析未启用，使用简化分析")
             return self._simple_analyze(items)
 
-        logger.info(f"使用 {self.provider} 分析 {len(items)} 条内容...")
+        # 按互动数据排序，取前 50 进行 AI 分析
+        def get_score(item):
+            engagement = item.get("engagement", {})
+            return engagement.get("score", 0) + engagement.get("comments", 0) * 2
+
+        sorted_items = sorted(items, key=get_score, reverse=True)
+        ai_analyze_count = min(50, len(sorted_items))  # 最多 50 条 AI 分析
+
+        logger.info(f"使用 {self.provider} 分析前 {ai_analyze_count} 条内容 (共 {len(items)} 条)...")
 
         analyzed_items = []
-        for i, item in enumerate(items):
+        for i, item in enumerate(sorted_items):
             try:
-                analyzed_item = self._analyze_single(item)
+                if i < ai_analyze_count:
+                    # 前 50 条使用 AI 分析
+                    analyzed_item = self._analyze_single(item)
+                else:
+                    # 其余使用简化分析
+                    analyzed_item = self._simple_analyze_single(item)
+
                 analyzed_items.append(analyzed_item)
-                if (i + 1) % 10 == 0:
-                    logger.info(f"分析进度: {i+1}/{len(items)}")
+
+                if (i + 1) % 10 == 0 or i == ai_analyze_count - 1:
+                    logger.info(f"分析进度: {i+1}/{len(sorted_items)}")
+
             except Exception as e:
                 logger.error(f"分析失败: {e}")
-                # 降级处理
                 analyzed_items.append(self._simple_analyze_single(item))
 
         return analyzed_items
